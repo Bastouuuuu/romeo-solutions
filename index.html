@@ -10,6 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
     :root { --brand:#26A65B; }
     html { font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
@@ -20,6 +21,12 @@
     .container-safe{ @apply mx-auto w-full px-4; max-width:100%; }
     .card{ @apply p-6 rounded-2xl bg-white border border-zinc-100 shadow-sm transition-all duration-300; }
     .card:hover{ @apply -translate-y-1 shadow-lg; }
+
+    /* Effets visuels pour le titre */
+    @keyframes gradient-shift { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+    @keyframes glow-pulse { 0%, 100% { filter: drop-shadow(0 0 20px rgba(38, 166, 91, 0.3)); } 50% { filter: drop-shadow(0 0 30px rgba(38, 166, 91, 0.6)); } }
+    .title-gradient { background: linear-gradient(135deg, #26A65B 0%, #10B981 25%, #059669 50%, #047857 75%, #065F46 100%); background-size: 300% 300%; animation: gradient-shift 8s ease-in-out infinite; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .glow-effect { animation: glow-pulse 3s ease-in-out infinite; }
   </style>
 </head>
 <body class="antialiased text-zinc-800 bg-white">
@@ -27,19 +34,21 @@
   <header class="sticky top-0 z-40 backdrop-blur bg-white/70 border-b border-zinc-100">
     <div class="container-safe px-4">
       <div class="flex items-center justify-between h-16">
-        <a href="#" class="flex items-center gap-3">
-          <img src="Images/Romeo.svg" alt="Roméo" class="w-32 h-10 object-contain"/>
+        <a href="#" class="flex items-center gap-3" aria-label="Accueil Roméo">
+          <img src="Images/Romeo.svg" alt="Roméo" class="w-32 h-10 object-contain" loading="lazy"/>
         </a>
         <nav class="hidden md:flex items-center gap-6 text-sm font-medium">
           <a href="#comment" class="hover:text-zinc-900 text-zinc-600">Comment ça marche</a>
+          <a href="#problem" class="hover:text-zinc-900 text-zinc-600">Problèmes</a>
           <a href="#resultats" class="hover:text-zinc-900 text-zinc-600">Résultats</a>
+          <a href="#benefits" class="hover:text-zinc-900 text-zinc-600">Bénéfices</a>
           <a href="#faq" class="hover:text-zinc-900 text-zinc-600">FAQ</a>
         </nav>
         <div class="hidden md:flex items-center gap-4">
           <a href="#comment" class="link-primary">Voir un exemple</a>
           <a href="https://wa.me/33624960183" class="link-primary">Démarrer l’essai gratuit</a>
         </div>
-        <button id="menuBtn" class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg border border-zinc-200">
+        <button id="menuBtn" aria-label="Ouvrir le menu" class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg border border-zinc-200">
           <span class="sr-only">Menu</span>
           <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
         </button>
@@ -47,7 +56,9 @@
       <div id="mobileMenu" class="md:hidden hidden pb-4">
         <nav class="flex flex-col gap-3 text-sm">
           <a href="#comment" class="py-2">Comment ça marche</a>
+          <a href="#problem" class="py-2">Problèmes</a>
           <a href="#resultats" class="py-2">Résultats</a>
+          <a href="#benefits" class="py-2">Bénéfices</a>
           <a href="#faq" class="py-2">FAQ</a>
           <a href="#comment" class="link-primary mt-1">Voir un exemple</a>
           <a href="https://wa.me/33624960183" class="link-primary">Démarrer l’essai gratuit</a>
@@ -60,24 +71,33 @@
   <section class="relative overflow-hidden">
     <div class="absolute inset-0 -z-10 bg-gradient-to-b from-white via-white to-zinc-50"></div>
     <div class="container-safe px-4 py-16 md:py-24">
+      <div class="absolute inset-0 pointer-events-none overflow-hidden">
+        <div class="absolute top-1/4 left-10 w-20 h-px bg-gradient-to-r from-transparent via-green-200 to-transparent opacity-30"></div>
+        <div class="absolute bottom-1/4 right-10 w-20 h-px bg-gradient-to-l from-transparent via-green-200 to-transparent opacity-30"></div>
+      </div>
       <div class="grid md:grid-cols-2 gap-10 items-center">
         <div data-aos="fade-right" data-aos-duration="700">
           <span class="badge mb-4">Parlez, on s’occupe du reste.</span>
-          <h1 class="text-3xl md:text-5xl font-extrabold leading-tight mb-5">
-            Transformez des messages WhatsApp <span class="font-extrabold" style="color:var(--brand)">en rapports QHSE prêts à agir</span>.
+          <h1 class="text-3xl md:text-5xl font-extrabold leading-tight mb-5 relative">
+            Transformez des messages WhatsApp <span class="title-gradient glow-effect">en rapports QHSE</span>.
+            <div class="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-green-200 via-green-400 to-green-200 opacity-60 animate-pulse"></div>
           </h1>
-          <p class="text-lg text-zinc-600 mb-6">Les équipes parlent normalement. Roméo pose les bonnes questions, structure l’essentiel et vous envoie un <strong>PDF horodaté</strong> aux bonnes personnes, avec photos et localisation. Pas d’application à installer.</p>
+          <p class="text-lg text-zinc-600 mb-6">
+            Les équipes parlent normalement. Roméo pose les bonnes questions, structure l’essentiel et envoie un
+            <strong>PDF horodaté</strong> aux bonnes personnes, avec photos et localisation. Pas d’application à installer.
+          </p>
           <div class="flex flex-col sm:flex-row gap-4 items-start">
             <a href="https://wa.me/33624960183" class="link-primary">Démarrer l’essai gratuit</a>
             <a href="#comment" class="link-primary">Voir les étapes</a>
           </div>
           <div class="mt-6 text-sm text-zinc-600">
-            <span class="font-semibold" style="color:var(--brand)">+4×</span> de remontées utiles constatées chez nos pilotes. <span class="font-semibold" style="color:var(--brand)">Jusqu’à 5h/sem</span> gagnées sur l’administratif.
+            <span class="font-semibold" style="color:var(--brand)">+4×</span> de remontées utiles constatées chez nos pilotes.
+            <span class="font-semibold" style="color:var(--brand)">Jusqu’à 5h/sem</span> gagnées sur l’administratif.
           </div>
         </div>
         <div class="relative" data-aos="fade-left" data-aos-duration="700">
           <div class="rounded-2xl border border-zinc-100 shadow-xl overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1200&auto=format&fit=crop" alt="Demo" class="w-full h-[360px] object-cover"/>
+            <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1200&auto=format&fit=crop" alt="Demo" class="w-full h-[360px] object-cover" loading="lazy"/>
             <div class="p-4 bg-white text-sm text-zinc-600">De la conversation au PDF : simple, rapide, complet.</div>
           </div>
         </div>
@@ -85,19 +105,20 @@
     </div>
   </section>
 
-  <!-- Comment ça marche (les 3 exemples = 3 étapes) -->
+  <!-- Comment ça marche (photos conservées) -->
   <section id="comment" class="py-20 bg-zinc-50/60">
     <div class="container-safe px-4">
       <div class="max-w-2xl mb-12" data-aos="fade-up">
         <h2 class="text-2xl md:text-4xl font-extrabold mb-3">Comment Roméo fonctionne</h2>
         <p class="text-zinc-600">Vos exemples deviennent le mode d’emploi : 3 étapes, 3 visuels.</p>
       </div>
+
       <div class="grid lg:grid-cols-3 gap-6">
         <!-- Étape 1 : Conversation -->
         <figure class="card group" data-aos="fade-up">
           <div class="relative overflow-hidden rounded-xl bg-zinc-50">
-            <button onclick="openImageModal('Images/conversation.png', 'Étape 1 - Conversation')" class="w-full cursor-pointer group">
-              <img src="Images/conversation.png" class="w-full h-auto max-h-64 object-contain transition duration-300 group-hover:scale-[1.02]" alt="Étape 1 - Conversation"/>
+            <button onclick="openImageModal('Images/conversation.png', 'Étape 1 - Conversation')" class="w-full cursor-pointer group" aria-label="Voir l’image Étape 1 - Conversation">
+              <img src="Images/conversation.png" class="w-full h-auto max-h-64 object-contain transition duration-300 group-hover:scale-[1.02]" alt="Étape 1 - Conversation" loading="lazy"/>
               <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300 flex items-center justify-center">
                 <svg class="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
@@ -110,14 +131,15 @@
             <span class="font-semibold" style="color:var(--brand)">Parlez sur WhatsApp.</span> Photo, vocal, localisation. Roméo comprend et relance utilement.
           </figcaption>
         </figure>
-        <!-- Étape 2 : Rapport structuré -->
+
+        <!-- Étape 2 : Structuration -->
         <figure class="card group" data-aos="fade-up" data-aos-delay="100">
           <div class="relative overflow-hidden rounded-xl bg-zinc-50">
-            <button onclick="openImageModal('https://images.unsplash.com/photo-1493119508027-2b584f234d6c?q=80&w=1200&auto=format&fit=crop', 'Étape 2 - Structuration')" class="w-full cursor-pointer group">
-              <img src="https://images.unsplash.com/photo-1493119508027-2b584f234d6c?q=80&w=1200&auto=format&fit=crop" class="w-full h-auto max-h-64 object-contain transition duration-300 group-hover:scale-[1.02]" alt="Étape 2 - Structuration"/>
+            <button onclick="openImageModal('https://images.unsplash.com/photo-1493119508027-2b584f234d6c?q=80&w=1200&auto=format&fit=crop', 'Étape 2 - Structuration')" class="w-full cursor-pointer group" aria-label="Voir l’image Étape 2 - Structuration">
+              <img src="https://images.unsplash.com/photo-1493119508027-2b584f234d6c?q=80&w=1200&auto=format&fit=crop" class="w-full h-auto max-h-64 object-contain transition duration-300 group-hover:scale-[1.02]" alt="Étape 2 - Structuration" loading="lazy"/>
               <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300 flex items-center justify-center">
                 <svg class="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
                 </svg>
               </div>
             </button>
@@ -127,14 +149,15 @@
             <span class="font-semibold" style="color:var(--brand)">Roméo qualifie et structure.</span> Type de remontée, gravité, zone, actions immédiates, pièces jointes.
           </figcaption>
         </figure>
-        <!-- Étape 3 : Envoi + Suivi -->
+
+        <!-- Étape 3 : Suivi -->
         <figure class="card group" data-aos="fade-up" data-aos-delay="200">
           <div class="relative overflow-hidden rounded-xl bg-zinc-50">
-            <button onclick="openImageModal('Images/tableau_de_bord.png', 'Étape 3 - Suivi')" class="w-full cursor-pointer group">
-              <img src="Images/tableau_de_bord.png" class="w-full h-auto max-h-64 object-contain transition duration-300 group-hover:scale-[1.02]" alt="Étape 3 - Suivi"/>
+            <button onclick="openImageModal('Images/tableau_de_bord.png', 'Étape 3 - Suivi')" class="w-full cursor-pointer group" aria-label="Voir l’image Étape 3 - Suivi">
+              <img src="Images/tableau_de_bord.png" class="w-full h-auto max-h-64 object-contain transition duration-300 group-hover:scale-[1.02]" alt="Étape 3 - Suivi" loading="lazy"/>
               <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300 flex items-center justify-center">
                 <svg class="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
                 </svg>
               </div>
             </button>
@@ -145,6 +168,8 @@
           </figcaption>
         </figure>
       </div>
+
+      <!-- Download exemple PDF -->
       <div class="mt-8 text-center">
         <p class="text-sm text-zinc-600 mb-4">Téléchargez un exemple de rapport généré par Roméo</p>
         <a href="Images/exemple_rapport_romeo.pdf" download class="inline-flex items-center gap-2 px-6 py-3 bg-white border border-zinc-200 rounded-xl font-semibold text-zinc-700 hover:bg-zinc-50 hover:border-zinc-300 transition-all duration-200 shadow-sm">
@@ -157,10 +182,62 @@
       </div>
     </div>
   </section>
+
+  <!-- Problèmes QHSE (infographie) -->
+  <section id="problem" class="py-20">
+    <div class="container-safe px-4">
+      <div class="max-w-3xl mx-auto text-center mb-12" data-aos="fade-up">
+        <h2 class="text-2xl md:text-4xl font-extrabold mb-3" style="color:var(--brand)">Le reporting QHSE traditionnel est un frein à la sécurité</h2>
+        <p class="text-zinc-600">Formulaires lents, données incomplètes, faible engagement, informations mal exploitées.</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="bg-white rounded-xl shadow-lg p-6 text-center transform hover:scale-[1.02] transition" data-aos="fade-up">
+          <div class="text-5xl mb-4">🕒</div>
+          <h3 class="text-xl font-bold mb-2">Processus Lents</h3>
+          <p class="text-gray-600">Des outils qui ralentissent la remontée d'informations critiques.</p>
+        </div>
+        <div class="bg-white rounded-xl shadow-lg p-6 text-center transform hover:scale-[1.02] transition" data-aos="fade-up" data-aos-delay="100">
+          <div class="text-5xl mb-4">📄</div>
+          <h3 class="text-xl font-bold mb-2">Données Incomplètes</h3>
+          <p class="text-gray-600">Détails oubliés, photos manquantes, localisation imprécise.</p>
+        </div>
+        <div class="bg-white rounded-xl shadow-lg p-6 text-center transform hover:scale-[1.02] transition" data-aos="fade-up" data-aos-delay="200">
+          <div class="text-5xl mb-4">😒</div>
+          <h3 class="text-xl font-bold mb-2">Peu Engageant</h3>
+          <p class="text-gray-600">Procédures vues comme une contrainte → sous-déclaration.</p>
+        </div>
+        <div class="bg-white rounded-xl shadow-lg p-6 text-center transform hover:scale-[1.02] transition" data-aos="fade-up" data-aos-delay="300">
+          <div class="text-5xl mb-4">📉</div>
+          <h3 class="text-xl font-bold mb-2">Données Mal Exploitées</h3>
+          <p class="text-gray-600">Les informations arrivent trop tard pour être préventives.</p>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- Résultats -->
+  <!-- Coût de l'inaction : Graphiques -->
+  <section id="cost" class="py-20 bg-zinc-50/60">
+    <div class="container-safe px-4">
+      <div class="max-w-3xl mx-auto text-center mb-10" data-aos="fade-up">
+        <h2 class="text-2xl md:text-4xl font-extrabold mb-3" style="color:var(--brand)">Le coût de l'inaction : le BTP en première ligne</h2>
+        <p class="text-zinc-600">Les secteurs à haut risque nécessitent un reporting simple, rapide et fiable.</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="bg-white rounded-xl shadow-lg p-6" data-aos="fade-up">
+          <h3 class="text-xl font-bold text-center mb-4">Taux d'Accidents pour 1000 salariés</h3>
+          <div class="h-64"><canvas id="accidentRateChart"></canvas></div>
+          <p class="text-center text-gray-600 mt-4">Le BTP subit un taux d'accidents <strong>65% plus élevé</strong> que la moyenne.</p>
+        </div>
+        <div class="bg-white rounded-xl shadow-lg p-6" data-aos="fade-up" data-aos-delay="100">
+          <h3 class="text-xl font-bold text-center mb-4">Répartition des décès par accident du travail</h3>
+          <div class="h-64"><canvas id="fatalitiesChart"></canvas></div>
+          <p class="text-center text-gray-600 mt-4">Le BTP représente près de <strong>30%</strong> des décès liés au travail.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Résultats (section originale conservée) -->
   <section id="resultats" class="py-20">
     <div class="container-safe px-4">
       <div class="max-w-3xl mb-10" data-aos="fade-up">
@@ -188,7 +265,44 @@
     </div>
   </section>
 
-  <!-- FAQ -->
+  <!-- Bénéfices (graphes + comparatif) -->
+  <section id="benefits" class="py-20">
+    <div class="container-safe px-4">
+      <div class="max-w-3xl mx-auto text-center mb-10" data-aos="fade-up">
+        <h2 class="text-2xl md:text-4xl font-extrabold mb-3" style="color:var(--brand)">Des bénéfices tangibles pour votre entreprise</h2>
+        <p class="text-zinc-600">Un ROI mesurable et un alignement naturel avec vos objectifs ISO 45001 / 9001.</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="bg-white rounded-xl shadow-lg p-6 text-center" data-aos="fade-up">
+          <h3 class="text-xl font-bold mb-4">Temps de traitement d’un incident</h3>
+          <div class="flex items-center justify-center space-x-4 my-6">
+            <div class="text-center">
+              <div class="text-4xl font-black text-red-600">3 jours</div>
+              <div class="text-sm text-gray-500">Avant</div>
+            </div>
+            <div class="text-4xl font-bold text-zinc-400">→</div>
+            <div class="text-center">
+              <div class="text-4xl font-black" style="color:var(--brand)">3 minutes</div>
+              <div class="text-sm text-gray-500">Avec Roméo</div>
+            </div>
+          </div>
+          <p class="text-gray-600 mt-2">Passez d'une réaction lente à une intervention immédiate.</p>
+        </div>
+        <div class="bg-white rounded-xl shadow-lg p-6" data-aos="fade-up" data-aos-delay="100">
+          <h3 class="text-xl font-bold text-center mb-4">Réduction des arrêts de travail</h3>
+          <div class="h-64"><canvas id="workStoppageChart"></canvas></div>
+          <p class="text-center text-gray-600 mt-4">Jusqu’à <strong>−60%</strong> grâce aux actions préventives.</p>
+        </div>
+        <div class="bg-white rounded-xl shadow-lg p-6" data-aos="fade-up" data-aos-delay="200">
+          <h3 class="text-xl font-bold text-center mb-4">Amélioration de la qualité</h3>
+          <div class="h-64"><canvas id="scrapRateChart"></canvas></div>
+          <p class="text-center text-gray-600 mt-4">Un meilleur suivi des NC peut diviser le taux de rebut par >35.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ (originale) -->
   <section id="faq" class="py-20 bg-zinc-50/60">
     <div class="container-safe px-4">
       <div class="max-w-3xl mb-10" data-aos="fade-up">
@@ -216,7 +330,7 @@
     </div>
   </section>
 
-  <!-- CTA final (liens verts, pas de fond) -->
+  <!-- CTA final -->
   <section class="py-20">
     <div class="container-safe px-4">
       <div class="p-8 md:p-12 rounded-3xl border border-zinc-100 bg-gradient-to-br from-white to-zinc-50 shadow-xl text-center" data-aos="zoom-in">
@@ -230,12 +344,12 @@
     </div>
   </section>
 
-  <!-- Footer -->
+  <!-- Footer multi-colonnes + liens légaux conservés -->
   <footer class="border-t border-zinc-200">
     <div class="container-safe px-4 py-10 grid md:grid-cols-4 gap-8 text-sm">
       <div>
         <div class="flex items-center gap-2 mb-3">
-          <img src="Images/Romeo.svg" alt="Roméo" class="w-24 h-8 object-contain"/>
+          <img src="Images/Romeo.svg" alt="Roméo" class="w-24 h-8 object-contain" loading="lazy"/>
         </div>
         <p class="text-zinc-600">Remontées QHSE sans friction. « Parlez, on s’occupe du reste. »</p>
       </div>
@@ -267,8 +381,9 @@
         <span>© <span id="year"></span> Roméo. Tous droits réservés.</span>
         <div class="flex items-center gap-3">
           <a href="conditions_generales_utilisation.html" class="hover:text-zinc-700">CGU</a>
-          <a href="#" class="hover:text-zinc-700">Mentions légales</a>
-          <a href="#" class="hover:text-zinc-700">Politique RGPD</a>
+          <a href="conditions_generales_vente.html" class="hover:text-zinc-700">CGV</a>
+          <a href="mentions_legales.html" class="hover:text-zinc-700">Mentions légales</a>
+          <a href="politique_confidentialite.html" class="hover:text-zinc-700">Politique RGPD</a>
         </div>
       </div>
     </div>
@@ -278,7 +393,7 @@
   <div id="imageModal" class="fixed inset-0 z-50 hidden bg-black/80">
     <div class="flex items-center justify-center min-h-screen p-4">
       <div class="relative max-w-5xl max-h-[90vh] bg-white rounded-2xl shadow-2xl">
-        <button onclick="closeImageModal()" class="absolute top-4 right-4 z-10 p-2 bg-white/90 hover:bg-white rounded-full shadow-lg transition-colors duration-200">
+        <button onclick="closeImageModal()" class="absolute top-4 right-4 z-10 p-2 bg-white/90 hover:bg-white rounded-full shadow-lg transition-colors duration-200" aria-label="Fermer la modale">
           <svg class="w-6 h-6 text-zinc-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
           </svg>
@@ -296,51 +411,172 @@
   <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
   <script>
     AOS.init({ once: true });
-    
-    // Année du copyright
+
+    // Année footer
     const yearEl = document.getElementById('year');
-    if(yearEl) yearEl.textContent = new Date().getFullYear();
-    
-    // Menu mobile
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+    // Menu mobile + fermeture auto au clic
     const btn = document.getElementById('menuBtn');
     const menu = document.getElementById('mobileMenu');
-    btn?.addEventListener('click',()=> menu.classList.toggle('hidden'));
-    
-    // Modal des images
+    btn?.addEventListener('click', () => menu.classList.toggle('hidden'));
+    menu?.querySelectorAll('a').forEach(a => a.addEventListener('click', ()=> menu.classList.add('hidden')));
+
+    // Modal images
     function openImageModal(imageSrc, title) {
-      console.log('Opening modal for:', imageSrc, title); // Debug
       const modal = document.getElementById('imageModal');
       const modalImage = document.getElementById('modalImage');
       const modalTitle = document.getElementById('modalTitle');
-      
       if (modal && modalImage && modalTitle) {
         modalImage.src = imageSrc;
         modalTitle.textContent = title;
         modal.classList.remove('hidden');
-        console.log('Modal opened successfully'); // Debug
-      } else {
-        console.error('Modal elements not found'); // Debug
       }
     }
-    
     function closeImageModal() {
       const modal = document.getElementById('imageModal');
-      if (modal) {
-        modal.classList.add('hidden');
-      }
+      if (modal) modal.classList.add('hidden');
     }
-    
-    // Fermer avec Escape
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') {
-        closeImageModal();
+    document.addEventListener('keydown', (e)=> { if (e.key === 'Escape') closeImageModal(); });
+    document.getElementById('imageModal').addEventListener('click', function(e) { if (e.target === this) closeImageModal(); });
+
+    // --- Chart.js (infographies) ---
+    const palette = {
+      brand: '#26A65B',
+      teal: '#10B981',
+      lightTeal: '#94D2BD',
+      yellow: '#E9D8A6',
+      orange: '#EE9B00',
+      rust: '#BB3E03',
+      darkRed: '#AE2012',
+      slate: '#64748B'
+    };
+
+    const defaultTooltipOptions = {
+      plugins: {
+        tooltip: {
+          callbacks: {
+            title: function(tooltipItems) {
+              const item = tooltipItems[0];
+              let label = item.chart.data.labels[item.dataIndex];
+              return Array.isArray(label) ? label.join(' ') : label;
+            }
+          }
+        }
+      }
+    };
+
+    // Accidents (bar)
+    new Chart(document.getElementById('accidentRateChart'), {
+      type: 'bar',
+      data: {
+        labels: ['BTP', 'Moyenne Tous Secteurs'],
+        datasets: [{
+          label: 'Accidents pour 1000 salariés',
+          data: [56, 34],
+          backgroundColor: [palette.darkRed, palette.lightTeal],
+          borderColor: [palette.rust, palette.teal],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        ...defaultTooltipOptions,
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+          y: {
+            beginAtZero: true,
+            title: { display: true, text: "Nombre d'accidents" }
+          }
+        }
       }
     });
-    
-    // Fermer en cliquant sur le fond
-    document.getElementById('imageModal').addEventListener('click', function(e) {
-      if (e.target === this) {
-        closeImageModal();
+
+    // Décès (doughnut)
+    new Chart(document.getElementById('fatalitiesChart'), {
+      type: 'doughnut',
+      data: {
+        labels: ['BTP', 'Autres Secteurs'],
+        datasets: [{
+          data: [29.6, 70.4],
+          backgroundColor: [palette.darkRed, palette.lightTeal],
+          hoverOffset: 4
+        }]
+      },
+      options: {
+        ...defaultTooltipOptions,
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { position: 'bottom' },
+          tooltip: {
+            callbacks: {
+              label: function(context) {
+                let label = context.label ? context.label + ': ' : '';
+                return label + (context.parsed ?? '') + '%';
+              }
+            }
+          }
+        }
+      }
+    });
+
+    // Arrêts de travail (doughnut)
+    new Chart(document.getElementById('workStoppageChart'), {
+      type: 'doughnut',
+      data: {
+        labels: ['Arrêts réduits', 'Arrêts restants'],
+        datasets: [{
+          data: [60, 40],
+          backgroundColor: [palette.brand, palette.yellow],
+          borderColor: [palette.teal, palette.orange],
+          borderWidth: 1,
+          hoverOffset: 4
+        }]
+      },
+      options: {
+        ...defaultTooltipOptions,
+        responsive: true,
+        maintainAspectRatio: false,
+        cutout: '70%',
+        plugins: {
+          legend: { display: false },
+          title: {
+            display: true,
+            text: '60% de réduction',
+            position: 'top',
+            font: { size: 18, weight: 'bold' },
+            color: '#0f172a'
+          }
+        }
+      }
+    });
+
+    // Taux de rebut (bar horizontale)
+    new Chart(document.getElementById('scrapRateChart'), {
+      type: 'bar',
+      data: {
+        labels: ['Avant', 'Après'],
+        datasets: [{
+          label: 'Taux de rebut (%)',
+          data: [47.2, 1.3],
+          backgroundColor: [palette.rust, palette.teal],
+          barPercentage: 0.5
+        }]
+      },
+      options: {
+        ...defaultTooltipOptions,
+        indexAxis: 'y',
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+          x: {
+            beginAtZero: true,
+            title: { display: true, text: 'Taux de rebut en %' }
+          }
+        }
       }
     });
   </script>

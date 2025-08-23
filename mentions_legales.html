@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mentions Légales - Roméo</title>
+  <meta name="description" content="Mentions légales du service Roméo - Remontées QHSE sans friction"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root { --brand:#26A65B; }
+    html { font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
+    .link-primary{ color:var(--brand); font-weight:700; }
+    .link-primary:hover{ text-decoration:underline; }
+    /* Impression minimaliste */
+    @media print {
+      header, footer { display:none !important; }
+      body { background:white !important; }
+      a[href^="http"]::after { content:" (" attr(href) ")"; font-weight:normal; }
+    }
+  </style>
+</head>
+<body class="antialiased text-zinc-800 bg-gradient-to-br from-white to-zinc-50">
+  <!-- Header -->
+  <header class="sticky top-0 z-40 backdrop-blur bg-white/70 border-b border-zinc-100 shadow-sm">
+    <div class="mx-auto w-full px-6 max-w-7xl">
+      <div class="flex items-center justify-between h-16">
+        <a href="index.html" class="flex items-center gap-3">
+          <img src="Images/Romeo.svg" alt="Roméo" class="w-32 h-10 object-contain"/>
+        </a>
+        <nav class="hidden md:flex items-center gap-6 text-sm font-medium">
+          <a href="index.html#comment" class="hover:text-zinc-900 text-zinc-600 transition-colors">Comment ça marche</a>
+          <a href="index.html#resultats" class="hover:text-zinc-900 text-zinc-600 transition-colors">Résultats</a>
+          <a href="index.html#faq" class="hover:text-zinc-900 text-zinc-600 transition-colors">FAQ</a>
+        </nav>
+        <div class="hidden md:flex items-center gap-4">
+          <a href="index.html#comment" class="link-primary hover:scale-105 transition-transform duration-200">Voir un exemple</a>
+          <a href="https://wa.me/33624960183" class="px-5 py-2.5 bg-[var(--brand)] hover:bg-green-700 text-white rounded-full font-semibold transition-colors shadow-md hover:shadow-lg">Démarrer l'essai gratuit</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Contenu principal -->
+  <main class="py-16 md:py-24">
+    <div class="mx-auto w-full px-6 max-w-4xl">
+      <!-- Titre -->
+      <div class="text-center mb-16 md:mb-20">
+        <h1 class="text-4xl md:text-6xl font-extrabold mb-4 md:mb-6 leading-tight bg-clip-text text-transparent bg-gradient-to-r from-green-600 to-green-800">
+          Mentions Légales
+        </h1>
+        <p class="text-lg md:text-xl text-zinc-600 max-w-2xl mx-auto">Service Roméo - Remontées QHSE sans friction</p>
+      </div>
+
+      <!-- Mentions légales -->
+      <div class="space-y-10 md:space-y-12">
+        <!-- 1. Éditeur du site -->
+        <section class="p-10 rounded-2xl bg-white border border-zinc-100 shadow-lg hover:shadow-xl transition-shadow duration-300">
+          <h2 class="text-2xl font-bold mb-6 text-green-700">1. Éditeur du site</h2>
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="p-6 rounded-xl bg-zinc-50 border border-zinc-200 shadow-sm">
+              <div class="text-sm font-semibold text-zinc-600 uppercase tracking-wide mb-2">Raison sociale</div>
+              <div class="text-lg text-zinc-800">Roméo Solutions</div>
+            </div>
+            <div class="p-6 rounded-xl bg-zinc-50 border border-zinc-200 shadow-sm">
+              <div class="text-sm font-semibold text-zinc-600 uppercase tracking-wide mb-2">Statut juridique</div>
+              <div class="text-lg text-zinc-800">Entrepreneur individuel – Micro-entreprise</div>
+            </div>
+            <div class="p-6 rounded-xl bg-zinc-50 border border-zinc-200 shadow-sm">
+              <div class="text-sm font-semibold text-zinc-600 uppercase tracking-wide mb-2">SIREN</div>
+              <div class="text-lg text-zinc-800">990 007 197</div>
+            </div>
+            <div class="p-6 rounded-xl bg-zinc-50 border border-zinc-200 shadow-sm">
+              <div class="text-sm font-semibold text-zinc-600 uppercase tracking-wide mb-2">Code APE</div>
+              <div class="text-lg text-zinc-800">6202A – Conseil et développement de solutions informatiques</div>
+            </div>
+            <div class="p-6 rounded-xl bg-zinc-50 border border-zinc-200 shadow-sm">
+              <div class="text-sm font-semibold text-zinc-600 uppercase tracking-wide mb-2">Adresse</div>
+              <div class="text-lg text-zinc-800">12 rue Bayard, 34000 Montpellier, France</div>
+            </div>
+            <div class="p-6 rounded-xl bg-zinc-50 border border-zinc-200 shadow-sm">
+              <div class="text-sm font-semibold text-zinc-600 uppercase tracking-wide mb-2">Téléphone</div>
+              <div class="text-lg text-zinc-800">
+                <a href="tel:+33624960183" class="link-primary">+33 6 24 96 01 83</a>
+              </div>
+            </div>
+            <div class="p-6 rounded-xl bg-zinc-50 border border-zinc-200 shadow-sm md:col-span-2">
+              <div class="text-sm font-semibold text-zinc-600 uppercase tracking-wide mb-2">E-mail</div>
+              <div class="text-lg text-zinc-800">
+                <a href="mailto:bastien.vigne@icloud.com" class="link-primary">bastien.vigne@icloud.com</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 2. Directeur de la publication -->
+        <section class="p-10 rounded-2xl bg-white border border-zinc-100 shadow-lg hover:shadow-xl transition-shadow duration-300">
+          <h2 class="text-2xl font-bold mb-6 text-green-700">2. Directeur de la publication</h2>
+          <div class="space-y-4 text-zinc-700 leading-relaxed text-lg">
+            <p><strong>Bastien Vigne</strong> – Entrepreneur individuel</p>
+            <p>En tant que directeur de la publication, Bastien Vigne est responsable du contenu éditorial du site web et de l'ensemble des informations diffusées.</p>
+          </div>
+        </section>
+
+        <!-- 3. Hébergement -->
+        <section class="p-10 rounded-2xl bg-white border border-zinc-100 shadow-lg hover:shadow-xl transition-shadow duration-300">
+          <h2 class="text-2xl font-bold mb-6 text-green-700">3. Hébergement</h2>
+          <div class="space-y-4 text-zinc-700 leading-relaxed text-lg">
+            <p>Ce site web est hébergé par :</p>
+            <div class="grid md:grid-cols-2 gap-6">
+              <div class="p-6 rounded-xl bg-zinc-50 border border-zinc-200 shadow-sm">
+                <div class="text-sm font-semibold text-zinc-600 uppercase tracking-wide mb-2">Hébergeur</div>
+                <div class="text-lg text-zinc-800">Hostinger</div>
+              </div>
+              <div class="p-6 rounded-xl bg-zinc-50 border border-zinc-200 shadow-sm">
+                <div class="text-sm font-semibold text-zinc-600 uppercase tracking-wide mb-2">Adresse</div>
+                <div class="text-lg text-zinc-800">HOSTINGER INTERNATIONAL LTD, 61 Lordou Vironos Street, 6023 Larnaca, Chypre</div>
+              </div>
+              <div c

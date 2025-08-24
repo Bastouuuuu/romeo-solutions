@@ -16,11 +16,11 @@
     html { font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
     .link-primary{ color:var(--brand); font-weight:700; }
     .link-primary:hover{ text-decoration:underline; }
-    .btn-secondary{ @apply inline-flex items-center justify-center rounded-xl px-5 py-3 font-semibold border transition; border-color: rgb(229 231 235); }
-    .badge{ @apply inline-flex items-center gap-2 text-xs font-bold; color: var(--brand); }
-    .container-safe{ @apply mx-auto w-full px-4; max-width:100%; }
-    .card{ @apply p-6 rounded-2xl bg-white border border-zinc-100 shadow-sm transition-all duration-300; }
-    .card:hover{ @apply -translate-y-1 shadow-lg; }
+    .btn-secondary{ display: inline-flex; align-items: center; justify-content: center; border-radius: 0.75rem; padding: 0.75rem 1.25rem; font-weight: 600; border: 1px solid; transition: all 0.2s; border-color: rgb(229 231 235); }
+    .badge{ display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.75rem; font-weight: 700; color: var(--brand); }
+    .container-safe{ margin-left: auto; margin-right: auto; width: 100%; padding-left: 1rem; padding-right: 1rem; max-width: 100%; }
+    .card{ padding: 1.5rem; border-radius: 1rem; background-color: white; border: 1px solid rgb(244 245 246); box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05); transition: all 0.3s; }
+    .card:hover{ transform: translateY(-0.25rem); box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); }
 
     /* Effets visuels pour le titre */
     @keyframes gradient-shift { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
@@ -97,7 +97,7 @@
         </div>
         <div class="relative" data-aos="fade-left" data-aos-duration="700">
           <div class="rounded-2xl border border-zinc-100 shadow-xl overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1200&auto=format&fit=crop" alt="Demo" class="w-full h-[360px] object-cover" loading="lazy"/>
+            <img src="Images/hook.png" alt="Roméo en action" class="w-full h-[360px] object-cover" loading="lazy"/>
             <div class="p-4 bg-white text-sm text-zinc-600">De la conversation au PDF : simple, rapide, complet.</div>
           </div>
         </div>
@@ -126,6 +126,7 @@
               </div>
             </button>
             <span class="absolute top-3 left-3 text-xs font-bold px-2 py-1 rounded-full bg-white/80" style="color:var(--brand)">Étape 1</span>
+
           </div>
           <figcaption class="mt-4 text-sm text-zinc-700">
             <span class="font-semibold" style="color:var(--brand)">Parlez sur WhatsApp.</span> Photo, vocal, localisation. Roméo comprend et relance utilement.
@@ -144,6 +145,7 @@
               </div>
             </button>
             <span class="absolute top-3 left-3 text-xs font-bold px-2 py-1 rounded-full bg-white/80" style="color:var(--brand)">Étape 2</span>
+
           </div>
           <figcaption class="mt-4 text-sm text-zinc-700">
             <span class="font-semibold" style="color:var(--brand)">Roméo qualifie et structure.</span> Type de remontée, gravité, zone, actions immédiates, pièces jointes.
@@ -162,6 +164,7 @@
               </div>
             </button>
             <span class="absolute top-3 left-3 text-xs font-bold px-2 py-1 rounded-full bg-white/80" style="color:var(--brand)">Étape 3</span>
+
           </div>
           <figcaption class="mt-4 text-sm text-zinc-700">
             <span class="font-semibold" style="color:var(--brand)">PDF + e‑mail + tableau de bord.</span> Rapport horodaté envoyé aux bonnes personnes et archivé pour le suivi.
@@ -183,59 +186,101 @@
     </div>
   </section>
 
-  <!-- Problèmes QHSE (infographie) -->
-  <section id="problem" class="py-20">
+  <!-- Problèmes QHSE (mini-article éditorial) -->
+  <section id="problem" class="py-16 bg-zinc-50/60">
     <div class="container-safe px-4">
-      <div class="max-w-3xl mx-auto text-center mb-12" data-aos="fade-up">
-        <h2 class="text-2xl md:text-4xl font-extrabold mb-3" style="color:var(--brand)">Le reporting QHSE traditionnel est un frein à la sécurité</h2>
-        <p class="text-zinc-600">Formulaires lents, données incomplètes, faible engagement, informations mal exploitées.</p>
+      <!-- Titre principal cohérent avec les autres sections -->
+      <div class="max-w-3xl mb-12" data-aos="fade-up">
+        <h2 class="text-2xl md:text-4xl font-extrabold mb-3 text-zinc-800">Problèmes QHSE</h2>
+        <p class="text-zinc-600">Le reporting traditionnel freine la sécurité et la prévention</p>
       </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        <div class="bg-white rounded-xl shadow-lg p-6 text-center transform hover:scale-[1.02] transition" data-aos="fade-up">
-          <div class="text-5xl mb-4">🕒</div>
-          <h3 class="text-xl font-bold mb-2">Processus Lents</h3>
-          <p class="text-gray-600">Des outils qui ralentissent la remontée d'informations critiques.</p>
+      
+      <div class="max-w-4xl mx-auto">
+
+        <!-- Titre éditorial -->
+        <div class="text-center mb-10" data-aos="fade-up">
+          <h3 class="text-2xl md:text-3xl font-bold leading-snug mb-4" style="color:var(--brand)">Le reporting QHSE traditionnel est un frein à la sécurité</h3>
+          <p class="max-w-2xl mx-auto text-zinc-600">Formulaires lents, données incomplètes, faible engagement, informations mal exploitées.</p>
         </div>
-        <div class="bg-white rounded-xl shadow-lg p-6 text-center transform hover:scale-[1.02] transition" data-aos="fade-up" data-aos-delay="100">
-          <div class="text-5xl mb-4">📄</div>
-          <h3 class="text-xl font-bold mb-2">Données Incomplètes</h3>
-          <p class="text-gray-600">Détails oubliés, photos manquantes, localisation imprécise.</p>
+
+        <!-- Citation punchline -->
+        <div class="text-center mb-10" data-aos="fade-up" data-aos-delay="100">
+          <blockquote class="text-lg italic text-zinc-700 border-l-4 border-green-500 pl-4 py-3 bg-white/50 rounded-r-lg shadow-sm max-w-2xl mx-auto">
+            "Un reporting lent et incomplet coûte des vies dans le BTP."
+          </blockquote>
         </div>
-        <div class="bg-white rounded-xl shadow-lg p-6 text-center transform hover:scale-[1.02] transition" data-aos="fade-up" data-aos-delay="200">
-          <div class="text-5xl mb-4">😒</div>
-          <h3 class="text-xl font-bold mb-2">Peu Engageant</h3>
-          <p class="text-gray-600">Procédures vues comme une contrainte → sous-déclaration.</p>
+
+        <!-- Cartes avec icônes stylisées et hover effects -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+          <div class="bg-white rounded-xl shadow-lg p-6 text-center transform hover:translate-y-[-1px] hover:shadow-xl transition-all duration-300" data-aos="fade-up">
+            <div class="w-12 h-12 mx-auto mb-4 bg-gradient-to-br from-red-100 to-red-200 rounded-full flex items-center justify-center">
+              <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+            </div>
+            <h3 class="text-lg font-bold mb-2 text-zinc-800">Processus Lents</h3>
+            <p class="text-zinc-600 text-sm">Des outils qui ralentissent la remontée d'informations critiques.</p>
+          </div>
+          
+          <div class="bg-white rounded-xl shadow-lg p-6 text-center transform hover:translate-y-[-1px] hover:shadow-xl transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
+            <div class="w-12 h-12 mx-auto mb-4 bg-gradient-to-br from-orange-100 to-orange-200 rounded-full flex items-center justify-center">
+              <svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+              </svg>
+            </div>
+            <h3 class="text-lg font-bold mb-2 text-zinc-800">Données Incomplètes</h3>
+            <p class="text-zinc-600 text-sm">Détails oubliés, photos manquantes, localisation imprécise.</p>
+          </div>
+          
+          <div class="bg-white rounded-xl shadow-lg p-6 text-center transform hover:translate-y-[-1px] hover:shadow-xl transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
+            <div class="w-12 h-12 mx-auto mb-4 bg-gradient-to-br from-yellow-100 to-yellow-200 rounded-full flex items-center justify-center">
+              <svg class="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+            </div>
+            <h3 class="text-lg font-bold mb-2 text-zinc-800">Peu Engageant</h3>
+            <p class="text-zinc-600 text-sm">Procédures vues comme une contrainte → sous-déclaration.</p>
+          </div>
+          
+          <div class="bg-white rounded-xl shadow-lg p-6 text-center transform hover:translate-y-[-1px] hover:shadow-xl transition-all duration-300" data-aos="fade-up" data-aos-delay="300">
+            <div class="w-12 h-12 mx-auto mb-4 bg-gradient-to-br from-blue-100 to-blue-200 rounded-full flex items-center justify-center">
+              <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+              </svg>
+            </div>
+            <h3 class="text-lg font-bold mb-2 text-zinc-800">Données Mal Exploitées</h3>
+            <p class="text-zinc-600 text-sm">Les informations arrivent trop tard pour être préventives.</p>
+          </div>
         </div>
-        <div class="bg-white rounded-xl shadow-lg p-6 text-center transform hover:scale-[1.02] transition" data-aos="fade-up" data-aos-delay="300">
-          <div class="text-5xl mb-4">📉</div>
-          <h3 class="text-xl font-bold mb-2">Données Mal Exploitées</h3>
-          <p class="text-gray-600">Les informations arrivent trop tard pour être préventives.</p>
+
+        <!-- Barre de séparation fine -->
+        <div class="border-t border-zinc-200 my-8"></div>
+
+        <!-- Transition vers chiffres avec contexte -->
+        <div class="text-center mb-8" data-aos="fade-up">
+          <h3 class="text-xl md:text-2xl font-bold leading-snug mb-3" style="color:var(--brand)">Le coût de l'inaction : le BTP en première ligne</h3>
+          <p class="text-zinc-600 max-w-2xl mx-auto">Le BTP reste le secteur le plus exposé : plus d'accidents, plus de décès que la moyenne.</p>
+        </div>
+
+        <!-- Graphiques avec titres explicites -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="bg-white rounded-xl shadow-lg p-6" data-aos="fade-up">
+            <h4 class="text-base font-semibold text-center mb-3 text-zinc-800">Taux d'accidents pour 1000 salariés (source INRS)</h4>
+            <div class="h-48"><canvas id="accidentRateChart"></canvas></div>
+            <p class="text-center text-zinc-600 mt-3 text-sm">Le BTP subit un taux d'accidents <strong>65% plus élevé</strong> que la moyenne.</p>
+          </div>
+          
+          <div class="bg-white rounded-xl shadow-lg p-6" data-aos="fade-up" data-aos-delay="100">
+            <h4 class="text-base font-semibold text-center mb-3 text-zinc-800">Répartition des décès par accident du travail</h4>
+            <div class="h-48"><canvas id="fatalitiesChart"></canvas></div>
+            <p class="text-center text-zinc-600 mt-3 text-sm">Le BTP représente près de <strong>30%</strong> des décès liés au travail.</p>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Coût de l'inaction : Graphiques -->
-  <section id="cost" class="py-20 bg-zinc-50/60">
-    <div class="container-safe px-4">
-      <div class="max-w-3xl mx-auto text-center mb-10" data-aos="fade-up">
-        <h2 class="text-2xl md:text-4xl font-extrabold mb-3" style="color:var(--brand)">Le coût de l'inaction : le BTP en première ligne</h2>
-        <p class="text-zinc-600">Les secteurs à haut risque nécessitent un reporting simple, rapide et fiable.</p>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div class="bg-white rounded-xl shadow-lg p-6" data-aos="fade-up">
-          <h3 class="text-xl font-bold text-center mb-4">Taux d'Accidents pour 1000 salariés</h3>
-          <div class="h-64"><canvas id="accidentRateChart"></canvas></div>
-          <p class="text-center text-gray-600 mt-4">Le BTP subit un taux d'accidents <strong>65% plus élevé</strong> que la moyenne.</p>
-        </div>
-        <div class="bg-white rounded-xl shadow-lg p-6" data-aos="fade-up" data-aos-delay="100">
-          <h3 class="text-xl font-bold text-center mb-4">Répartition des décès par accident du travail</h3>
-          <div class="h-64"><canvas id="fatalitiesChart"></canvas></div>
-          <p class="text-center text-gray-600 mt-4">Le BTP représente près de <strong>30%</strong> des décès liés au travail.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+
 
   <!-- Résultats (section originale conservée) -->
   <section id="resultats" class="py-20">
@@ -245,33 +290,51 @@
         <p class="text-zinc-600">Moins de trous dans la raquette. Plus d’actions, moins d’incidents.</p>
       </div>
       <div class="grid md:grid-cols-3 gap-6">
-        <div class="card">
+        <div class="card group relative cursor-help">
           <div class="text-3xl font-extrabold mb-1" style="color:var(--brand)">×4</div>
-          <p class="text-zinc-600">de remontées utiles grâce à l’usage naturel de WhatsApp.</p>
+          <p class="text-zinc-600">de remontées utiles grâce à l'usage naturel de WhatsApp.</p>
+          
+          <!-- Tooltip détaillé -->
+          <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-3 opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none group-hover:pointer-events-auto z-50">
+            <div class="bg-zinc-900 text-white p-4 rounded-lg shadow-xl max-w-xs text-sm leading-relaxed">
+              <div class="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-zinc-900"></div>
+              
+              <p>WhatsApp, rien à apprendre : les techniciens signalent spontanément, plus souvent et plus vite.</p>
+            </div>
+          </div>
         </div>
-        <div class="card">
+        <div class="card group relative cursor-help">
           <div class="text-3xl font-extrabold mb-1" style="color:var(--brand)">−50%</div>
-          <p class="text-zinc-600">d’incidents non détectés grâce à des signalements plus rapides.</p>
+          <p class="text-zinc-600">d'incidents non détectés grâce à des signalements plus rapides.</p>
+          
+          <!-- Tooltip détaillé -->
+          <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-3 opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none group-hover:pointer-events-auto z-50">
+            <div class="bg-zinc-900 text-white p-4 rounded-lg shadow-xl max-w-xs text-sm leading-relaxed">
+              <div class="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-zinc-900"></div>
+              
+              <p>Signalements en temps réel depuis le chantier : moins d'angles morts, plus d'actions à temps.</p>
+            </div>
+          </div>
         </div>
-        <div class="card">
-          <div class="text-3xl font-extrabold mb-1" style="color:var(--brand)">5h/sem.</div>
-          <p class="text-zinc-600">de temps administratif économisé en moyenne pour le QHSE.</p>
+        <div class="card group relative cursor-help">
+          <div class="text-3xl font-extrabold mb-1" style="color:var(--brand)">10h/sem.</div>
+          <p class="text-zinc-600">de temps administratif économisé en moyenne.</p>
+          
+          <!-- Tooltip détaillé -->
+          <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-3 opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none group-hover:pointer-events-auto z-50">
+            <div class="bg-zinc-900 text-white p-4 rounded-lg shadow-xl max-w-xs text-sm leading-relaxed">
+              <div class="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-zinc-900"></div>
+              
+              <p>Moins de paperasse : dictée WhatsApp, rapport auto, PDF et envoi instantané.</p>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="mt-8 flex flex-col sm:flex-row gap-4">
-        <a href="https://wa.me/33624960183" class="link-primary">Parler à un expert</a>
-        <a href="mailto:bastien.vigne@outlook.com" class="link-primary">Nous écrire</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Bénéfices (graphes + comparatif) -->
-  <section id="benefits" class="py-20">
-    <div class="container-safe px-4">
-      <div class="max-w-3xl mx-auto text-center mb-10" data-aos="fade-up">
-        <h2 class="text-2xl md:text-4xl font-extrabold mb-3" style="color:var(--brand)">Des bénéfices tangibles pour votre entreprise</h2>
-        <p class="text-zinc-600">Un ROI mesurable et un alignement naturel avec vos objectifs ISO 45001 / 9001.</p>
-      </div>
+      
+      <!-- Séparation visuelle fine -->
+      <div class="border-t border-zinc-100 my-6 md:my-8"></div>
+      
+      <!-- Graphiques et indicateurs -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         <div class="bg-white rounded-xl shadow-lg p-6 text-center" data-aos="fade-up">
           <h3 class="text-xl font-bold mb-4">Temps de traitement d’un incident</h3>
@@ -442,13 +505,13 @@
 
     // --- Chart.js (infographies) ---
     const palette = {
-      brand: '#26A65B',
+      brand: '#2ec86d',
       teal: '#10B981',
       lightTeal: '#94D2BD',
       yellow: '#E9D8A6',
       orange: '#EE9B00',
       rust: '#BB3E03',
-      darkRed: '#AE2012',
+      darkRed: '#dc2626',
       slate: '#64748B'
     };
 
